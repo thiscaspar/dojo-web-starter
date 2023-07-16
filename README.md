@@ -40,8 +40,7 @@ This command will create a local copy of the Dojo Web Starter repository and ent
 With `dojoup` installed, you can now build your example world using the following command:
 
 ```console
-cd contracts
-sozo build
+make build
 ```
 
 This command compiles your project and prepares it for execution.
@@ -59,7 +58,7 @@ katana --allow-zero-max-fee
 Finally, deploy your world using the `sozo migrate` command. This command, deploys your world to Katana!
 
 ```console
-sozo migrate
+make deploy
 ```
 
 ### Step 6: Get the React frontend ready
