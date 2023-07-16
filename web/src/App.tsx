@@ -10,7 +10,7 @@ function App() {
     components: { Moves, Position },
   } = useDojo();
 
-  const entityId = BigInt('0x06f62894bfd81d2e396ce266b2ad0f21e0668d604e5bb1077337b6d570a54aea');
+  const entityId = BigInt(import.meta.env.VITE_ENTITY_ID);
   const position = useComponentValue(Position, Utils.getEntityIdFromKeys([entityId]));
   const moves = useComponentValue(Moves, Utils.getEntityIdFromKeys([entityId]));
 
