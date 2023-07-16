@@ -3,10 +3,10 @@ import { SetupNetworkResult } from "./setupNetwork";
 export type SystemCalls = ReturnType<typeof createSystemCalls>;
 
 export enum Direction {
-    Left = 1,
-    Right = 2,
-    Up = 3,
-    Down = 4,
+    Left = 0,
+    Right = 1,
+    Up = 2,
+    Down = 3,
 }
 
 export function createSystemCalls(
@@ -24,6 +24,7 @@ export function createSystemCalls(
         const tx = await execute("move", [direction]);
         // awaitStreamValue(txReduced$, (txHash) => txHash === tx.transaction_hash);
         syncWorker.sync(tx.transaction_hash);
+        console.log("Moved ", direction)
       };
 
 
