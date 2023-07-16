@@ -67,6 +67,13 @@ sozo migrate
 ```console
 cd web
 yarn
+```
+
+
+### Step 7: Run the frontend locally
+
+```console
+cd web
 yarn dev
 ```
 
