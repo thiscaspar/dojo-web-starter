@@ -64,6 +64,7 @@ make deploy
 ### Step 6: Get the React frontend ready
 
 ```console
+make prep_web
 cd web
 yarn
 ```

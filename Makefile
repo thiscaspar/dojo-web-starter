@@ -4,6 +4,9 @@ build:
 test:
 	cd contracts; sozo test
 
+prep_web:
+	cd web; cp .env.example .env
+
 redeploy:
 	@cd contracts; \
 	WORLD_ADDR=$$(tail -n1 ../last_deployed_world); \
