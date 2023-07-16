@@ -11,7 +11,7 @@ mod spawn {
         set !(
             ctx.world,
             ctx.origin.into(),
-            (Moves { remaining: 254 }, Position { x: 0, y: 0 }, )
+            (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
         );
         return ();
     }
