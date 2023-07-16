@@ -30,7 +30,7 @@ export async function setupNetwork() {
         signer,
         execute: async (system: string, call_data: number.BigNumberish[]) => provider.execute(signer, system, call_data),
         entity: async (component: string, query: Query) => provider.entity(component, query),
-        entities: async (component: string, partition: string) => provider.entities(component, partition),
+        entities: async (component: string, partition: string, length: number) => provider.entities(component, partition, length),
         world,
         syncWorker
     };
