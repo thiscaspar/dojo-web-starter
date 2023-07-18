@@ -77,3 +77,45 @@ cd web
 yarn dev
 ```
 
+## Project Structure 
+This is an overview of the most important folders/files:
+- `Makefile` : A collection of helpful commands, mainly for Dojo
+- `contracts` : The Dojo Cairo smart contract code
+  - `src/components.cairo` : Dojo component definitions
+  - `src/systems.cairo` : Dojo component definitions
+  - `src/Scarb.toml` : The scarb config file used for katana
+- `web` : A [Vite](https://vitejs.dev/) React project 
+  - `.env` : (copied from env.example) Contains the hardcoded developer addresses used for Dojo
+  - `src/dojo/contractComponents.ts` : Client-side definitions of the components
+  - `src/dojo/createClientComponents.ts` : Client-side setup of the components
+  - `src/dojo/createSystemCalls.ts` : Client-side definitions of the systems
+
+## Typical development activities
+### Add a DOJO system
+- Edit `src/systems.cairo` 
+- Edit `src/dojo/createSystemCalls.ts`
+### Add a DOJO component
+- Edit `src/components.cairo`
+- Edit `src/dojo/contractComponents.ts`
+- Edit `src/dojo/createClientComponents.ts`
+### Redeploy to Katana
+- Restart Katana
+- Redeploy the contracts with `make deploy` or `cd contracts && sozo migrate`
+
+## Troubleshooting / Tricks
+### When using vscode, the cairo language server panics with `thread 'main' panicked at 'internal error: entered unreachable code: `
+Resolution: None, this is a know issue, can ignore
+
+### When deploying/migrating, consistent exceptions even though the contract compiles.
+Resolution: Delete the `contracts/target` dir
+
+### How do I use different accounts while testing?
+Register 2 accounts (example from https://github.com/coostendorp/dojo-rps): 
+```
+let player1 = starknet::contract_address_const::<0x1337>();
+let player2 = starknet::contract_address_const::<0x1338>();
+```
+And then switch accounts like this:
+```
+starknet::testing::set_contract_address(player1);
+```
