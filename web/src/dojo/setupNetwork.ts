@@ -5,8 +5,13 @@ import { number } from 'starknet';
 import { Providers, Query, SyncWorker} from "@dojoengine/core";
 import { Account, ec } from "starknet";
 
-export const KATANA_ACCOUNT_1_ADDRESS = import.meta.env.VITE_KATANA_ACCOUNT_1_ADDRESS
-export const KATANA_ACCOUNT_1_PRIVATEKEY = import.meta.env.VITE_KATANA_ACCOUNT_1_PRIVATEKEY
+
+const accountIndex = new URLSearchParams(document.location.search).get("account")??1
+console.log("Using account index ", accountIndex)
+
+
+export const KATANA_ACCOUNT_ADDRESS = import.meta.env[`VITE_KATANA_ACCOUNT_${accountIndex}_ADDRESS`]
+export const KATANA_ACCOUNT_PRIVATEKEY = import.meta.env[`VITE_KATANA_ACCOUNT_${accountIndex}_PRIVATEKEY`]
 
 export const WORLD_ADDRESS = import.meta.env.VITE_WORLD_ADDRESS
 export const EVENT_KEY = import.meta.env.VITE_EVENT_KEY
@@ -20,7 +25,7 @@ export async function setupNetwork() {
 
     const provider = new Providers.RPCProvider(WORLD_ADDRESS);
 
-    const signer = new Account(provider.sequencerProvider, KATANA_ACCOUNT_1_ADDRESS, ec.getKeyPair(KATANA_ACCOUNT_1_PRIVATEKEY))
+    const signer = new Account(provider.sequencerProvider, KATANA_ACCOUNT_ADDRESS, ec.getKeyPair(KATANA_ACCOUNT_PRIVATEKEY))
 
     const syncWorker = new SyncWorker(provider, contractComponents, EVENT_KEY);
 

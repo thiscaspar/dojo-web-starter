@@ -8,7 +8,11 @@ mod spawn {
     use dojo_examples::components::Moves;
 
     fn execute(ctx: Context) {
-        set !(ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, ));
+        set !(
+            ctx.world,
+            ctx.origin.into(),
+            (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
+        );
         return ();
     }
 }
@@ -61,10 +65,10 @@ mod move {
                 Position { x: position.x + 1, y: position.y }
             },
             Direction::Up(()) => {
-                Position { x: position.x, y: position.y - 1 }
+                Position { x: position.x, y: position.y + 1 }
             },
             Direction::Down(()) => {
-                Position { x: position.x, y: position.y + 1 }
+                Position { x: position.x, y: position.y - 1 }
             },
         }
     }
